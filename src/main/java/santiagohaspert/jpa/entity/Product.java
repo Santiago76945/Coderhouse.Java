@@ -2,26 +2,32 @@ package santiagohaspert.jpa.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
     private int id;
 
     @Column(name = "name")
-    @Getter @Setter
     private String name;
 
     @Column(name = "price")
-    @Getter @Setter
     private double price;
 
     @Column(name = "stock")
-    @Getter @Setter
     private int stock;
+
+    // Relación ManyToMany con Sale
+    @ManyToMany(mappedBy = "products")
+    private List<Sale> sales;
 }
+
