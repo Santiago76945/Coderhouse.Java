@@ -15,14 +15,18 @@ CREATE TABLE sales (
     id INT AUTO_INCREMENT PRIMARY KEY,
     sale_date DATE,
     total DOUBLE,
+    total_quantity INT,
     client_id INT,
     FOREIGN KEY (client_id) REFERENCES clients(id)
 );
 
-CREATE TABLE sale_products (
-    sale_id INT,
+CREATE TABLE sale_lines (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    quantity INT,
+    price_at_sale DOUBLE,
     product_id INT,
-    PRIMARY KEY (sale_id, product_id),
-    FOREIGN KEY (sale_id) REFERENCES sales(id),
-    FOREIGN KEY (product_id) REFERENCES products(id)
+    sale_id INT,
+    FOREIGN KEY (product_id) REFERENCES products(id),
+    FOREIGN KEY (sale_id) REFERENCES sales(id)
 );
+

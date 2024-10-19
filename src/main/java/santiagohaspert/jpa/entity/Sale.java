@@ -18,23 +18,24 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // Fecha de la venta
     @Column(name = "sale_date")
     private LocalDate saleDate;
 
+    // Precio total de la venta
     @Column(name = "total")
     private double total;
 
-    // Relación ManyToOne con Client
+    // Cantidad total de productos vendidos
+    @Column(name = "total_quantity")
+    private int totalQuantity;
+
+    // Relación con Cliente
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id")
     private Client client;
 
-    // Relación ManyToMany con Product
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "sale_products",
-            joinColumns = @JoinColumn(name = "sale_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> products;
+    // Relación con SaleLines
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    private List<SaleLine> lines;
 }
