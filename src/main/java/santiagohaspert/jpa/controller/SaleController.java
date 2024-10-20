@@ -14,9 +14,7 @@ public class SaleController {
     @Autowired
     private SaleService saleService;
 
-    // Otros métodos (si los hay)...
-
-    // POST: Crear nueva venta
+    // POST: Crear nueva venta con el formato de cliente y líneas
     @PostMapping
     public ResponseEntity<Map<String, Object>> createSale(@RequestBody Map<String, Object> saleRequest) {
         Map<String, Object> response = saleService.createSale(saleRequest);
@@ -27,4 +25,5 @@ public class SaleController {
         }
     }
 }
+
 
