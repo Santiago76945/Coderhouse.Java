@@ -101,8 +101,8 @@ public class SaleService {
             Sale sale = new Sale();
             sale.setClient(client);
             sale.setLines(saleLines);
-            sale.setTotal(totalPrice);
-            sale.setTotalQuantity(totalQuantity);
+            sale.setTotal(totalPrice); // Establecer el precio total calculado
+            sale.setTotalQuantity(totalQuantity); // Establecer la cantidad total de productos
 
             // Obtener la fecha de la venta desde el servicio REST
             LocalDate saleDate = getSaleDateFromApi();
@@ -141,6 +141,7 @@ public class SaleService {
         }
     }
 }
+
 
 
 
