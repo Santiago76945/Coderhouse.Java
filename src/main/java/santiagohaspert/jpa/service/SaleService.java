@@ -24,6 +24,12 @@ public class SaleService {
     @Autowired
     private SaleLineRepository saleLineRepository;
 
+    // Método para obtener todas las ventas
+    public List<Sale> getAllSales() {
+        return saleRepository.findAll();
+    }
+
+    // Método para crear una nueva venta
     public Map<String, Object> createSale(Map<String, Object> saleRequest) {
         Map<String, Object> response = new HashMap<>();
 
@@ -134,7 +140,7 @@ public class SaleService {
             return LocalDate.now();
         }
     }
-
 }
+
 
 

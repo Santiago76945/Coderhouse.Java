@@ -1,5 +1,6 @@
 package santiagohaspert.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,8 @@ public class Product {
     // Campo stock añadido
     private int stock;
 
-    // Relación bidireccional con Sale
+    // Relación bidireccional con Sale, con @JsonIgnore para evitar la recursividad
+    @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Sale> sales;
 }

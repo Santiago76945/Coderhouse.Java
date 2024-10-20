@@ -3,8 +3,10 @@ package santiagohaspert.jpa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import santiagohaspert.jpa.entity.Sale;
 import santiagohaspert.jpa.service.SaleService;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -24,6 +26,14 @@ public class SaleController {
             return ResponseEntity.ok(response);
         }
     }
+
+    // GET: Obtener todas las ventas (resumen)
+    @GetMapping
+    public ResponseEntity<List<Sale>> getAllSales() {
+        List<Sale> sales = saleService.getAllSales();
+        return ResponseEntity.ok(sales);
+    }
 }
+
 
 

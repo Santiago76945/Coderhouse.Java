@@ -1,5 +1,6 @@
 package santiagohaspert.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,8 @@ public class Sale {
     private String customerName;
     private Double totalAmount;
 
-    // Añadir los siguientes campos
+    // Añadir @JsonIgnore para evitar la recursividad
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
@@ -38,4 +40,5 @@ public class Sale {
     @JoinColumn(name = "product_id")
     private Product product;
 }
+
 

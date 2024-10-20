@@ -1,5 +1,6 @@
 package santiagohaspert.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,9 +30,11 @@ public class SaleLine {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    // Relación con Venta
+    // Relación con Venta, con @JsonIgnore para evitar la recursividad
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "sale_id")
     private Sale sale;
 }
+
 
