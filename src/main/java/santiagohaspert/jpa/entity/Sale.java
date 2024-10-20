@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.time.LocalDate;
 import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "sales")
@@ -16,26 +16,26 @@ public class Sale {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    // Fecha de la venta
-    @Column(name = "sale_date")
-    private LocalDate saleDate;
+    private String customerName;
+    private Double totalAmount;
 
-    // Precio total de la venta
-    @Column(name = "total")
-    private double total;
-
-    // Cantidad total de productos vendidos
-    @Column(name = "total_quantity")
-    private int totalQuantity;
-
-    // Relación con Cliente
-    @ManyToOne(cascade = CascadeType.ALL)
+    // Añadir los siguientes campos
+    @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    // Relación con SaleLines
-    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SaleLine> lines;
+
+    private double total;
+    private int totalQuantity;
+    private LocalDate saleDate;
+
+    // Relación bidireccional con Product
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 }
+

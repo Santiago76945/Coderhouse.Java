@@ -135,7 +135,6 @@ public class SaleService {
         }
     }
 
-    // Otros métodos (si los hay)...
 }
 
 

@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.List;
+
+import java.util.Set;
 
 @Entity
 @Table(name = "products")
@@ -15,19 +16,17 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
-    @Column(name = "name")
     private String name;
+    private Double price;
 
-    @Column(name = "price")
-    private double price;
-
-    @Column(name = "stock")
+    // Campo stock añadido
     private int stock;
 
-    // Relación ManyToMany con Sale
-    @ManyToMany(mappedBy = "products")
-    private List<Sale> sales;
+    // Relación bidireccional con Sale
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Sale> sales;
 }
+
 
